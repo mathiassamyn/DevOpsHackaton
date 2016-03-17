@@ -7,17 +7,30 @@ var bodyparser = require("body-parser");
 var request = require("request");
 var app = express();
 
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({
+    extended: true
+}));
 
 var mongoose = require('mongoose');
 var User = require('./models/users');
+var Team = require('./models/teams');
+var Member = require('./models/members');
 mongoose.connect("mongodb://172.16.138.217/hackaton");
+
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header ('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    next();
+});
+
+process.chdir("../");
+var path = require('path');
 
 app.use(bodyparser.json());
 
-app.use(function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-});
 
 app.get("/",function(req,res){
     res.sendFile(__dirname + "/" + "index.html");
@@ -29,6 +42,37 @@ app.get("/js/controller.js",function(req,res) {
     res.sendFile(__dirname + "/js/" + "controller.js");
 });
 
+app.get("/api/teams",function(req,res){
+   Team.find({},function(err,allteams){
+       if (err) throw err;
+
+       // object of all the users
+       console.log("requested all users");
+       res.json(allteams);
+   })
+});
+
+app.post("/api/addteam",function(req,res){
+    var tm = new Team({
+        TeamName:req.body.TeamName,
+        Members:[]
+    });
+
+    tm.save(function (err) {
+        if (err) {
+            console.log("post response: " + err.message);
+            res.send(err.message + err);
+        }
+        else{
+            res.send("Team added");
+        }
+    });
+
+});
+
+app.post("/api/addmember",function(req,res){
+
+});
 
 app.get("/api/users",function(req,res){
 
@@ -46,7 +90,7 @@ app.post("/api/newuser",function(req,res){
 
     console.log("Post request: new user");
 
-    res.send("true");
+
     var newUser = new User({
         Email: req.body.Email,
         Password: req.body.Password,
@@ -68,13 +112,13 @@ app.post("/api/newuser",function(req,res){
                     }
                     else{
                         res.send("true");
-                        console.log("post response: Created new user: " + newUser.email);}
+                        console.log("post response: Created new user: " + newUser.Email);}
 
 
                 });
             }else{
-                console.log("post response: " + "User " + newUser.email +" already exists");
-                res.send("User " + newUser.email +" already exists");
+                console.log("post response: " + "User " + newUser.Email +" already exists");
+                res.send("User " + newUser.Email +" already exists");
             }
         }
     });
