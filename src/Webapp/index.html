@@ -20,6 +20,11 @@
     app.controller("mijnCtrl", function ($scope, $http) {
         $scope.User = {"FirstName" : "TestFirst","LastName" : "TestLast"};
         $scope.Page = "Login";
+        
+        $scope.Logout = function () {
+            $scope.Page = "Login";
+            $scope.User = {};
+        }
     });
 </script>
 <nav class="navbar navbar-default" ng-show="Page != 'Login'">
@@ -39,7 +44,7 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><p class="navbar-text">Signed in as: {{User.FirstName}} {{User.LastName}}</p></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="#" ng-click="Logout">Logout</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
