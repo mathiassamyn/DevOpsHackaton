@@ -19,5 +19,8 @@ app.get("/",function(req,res){
 app.get("/css/reset.css",function(req,res) {
     res.sendFile(__dirname + "/css/" + "reset.css");
 });
+app.get("/js/controller.js",function(req,res) {
+    res.sendFile(__dirname + "/js/" + "controller.js");
+});
 
 app.listen(3000);
