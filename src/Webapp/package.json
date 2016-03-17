@@ -1,0 +1,45 @@
+{
+  "name": "DevOps",
+  "description": "Dev Ops hacketon for live!",
+  "version": "1.0.0",
+  "keywords": [
+    "DevOps"
+  ],
+  "contributors": [
+    {
+      "name": "Rival Thompson",
+      "email": "rival.thompson@student.ap.be",
+      "web": ""
+    },
+    {
+      "name": "Hans van Staey",
+      "email": "hans.vanstaey@student.ap.be",
+      "web": ""
+    },
+    {
+      "name": "Sverre Oste",
+      "email": "sverre.oste@student.ap.be",
+      "web": ""
+    },
+    {
+      "name": "Hannelore Peeters",
+      "email": "hannelore.peeters@student.ap.be",
+      "web": ""
+    },{
+      "name": "Levi Gilles",
+      "email": "levi.gilles@student.ap.be",
+      "web": ""
+    }
+  ],
+  "author": "Rival Thompson",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "async": "^0.9.0",
+    "mongodb":"^1.4.20",
+    "mongoose":"^4.4.6",
+    "request": "^2.69.0"
+  }
+}
+
