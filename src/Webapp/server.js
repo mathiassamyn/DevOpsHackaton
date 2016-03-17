@@ -1,5 +1,5 @@
 /**
- * Created by Hans Van Staey on 17/03/2016.
+ * Created by Hans Van Stupid on 17/03/2016.
  */
 
 var express = require("express");
@@ -10,9 +10,12 @@ var app = express();
 
 var mongoose = require('mongoose');
 var User = require('./models/users');
-mongoose.connect("mongodb://172.16.138.217/hackaton");
+//mongoose.connect("mongodb://172.16.138.217/hackaton");
 
 app.use(bodyparser.json());
+
+var path = require("path");
+app.use(express.static(__dirname + '/'));
 
 app.use(function(req, res) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -44,7 +47,7 @@ app.get("/api/users",function(req,res){
 
 app.post("/api/newuser",function(req,res){
 
-    console.log("Post request: new user");
+    console.log( req.body);
 
     res.send("true");
     var newUser = new User({
