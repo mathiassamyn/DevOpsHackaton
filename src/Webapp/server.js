@@ -1,5 +1,5 @@
 /**
- * Created by Hans Van Staey on 17/03/2016.
+ * Created by Hans Van Stupid on 17/03/2016.
  */
 
 var express = require("express");
@@ -88,7 +88,7 @@ app.get("/api/users",function(req,res){
 
 app.post("/api/newuser",function(req,res){
 
-    console.log("Post request: new user");
+    console.log( req.body);
 
 
     var newUser = new User({
