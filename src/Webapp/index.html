@@ -26,12 +26,17 @@
             //$scope.User = {"Email" : $('#emaillogin').text(),"Password" : $('#passwordlogin').text()};
             console.log($scope.User);
             //console.log(window.location.href + "api/login");
-            $scope.Page = 'Teams';
-            /*$http.post(window.location.href + "api/login", $scope.User).then(function (res) {
-                console.log(res);
+            //$scope.Page = 'Teams';
+            $http.post(window.location.href + "api/login", $scope.User).then(function (res) {
+                if(res.data.contains("signed in"))
+                {
+                    $scope.Page = 'Teams';
+                }
+                //console.log(res);
             }, function (res) {
+                //login failed
                 console.log(res);
-            });*/
+            });
         };
 
         $scope.Register = function () {
@@ -42,11 +47,16 @@
                 "LastName" : $('#lastname').text()
             };*/
             $scope.Page = 'Teams';
-            /*$http.post(window.location.href + "api/newuser", $scope.User).then(function (res) {
-                console.log(res);
+            $http.post(window.location.href + "api/newuser", $scope.User).then(function (res) {
+                if(res.data === "true")
+                {
+                    $scope.Page = 'Teams';
+                }
+                //console.log(res);
             }, function (res) {
+                //register failed
                 console.log(res);
-            });*/
+            });
         };
 
         $scope.Logout = function () {
