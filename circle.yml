@@ -1,8 +1,12 @@
 machine:
   node:
-    version: 0.11.8
+    version: 5.1
     
 checkout:
   post:
     - git submodule sync
     - git submodule update --init
+
+dependencies:
+  override:
+    - npm install --dev
