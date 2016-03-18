@@ -7,6 +7,4 @@ checkout:
     - git submodule sync
     - git submodule update --init
 
-dependencies:
-  override:
-    - npm install --dev
+
